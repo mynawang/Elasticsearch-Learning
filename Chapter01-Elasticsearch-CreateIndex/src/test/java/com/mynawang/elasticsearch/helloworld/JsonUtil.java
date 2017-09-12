@@ -1,5 +1,6 @@
-package com.mynawang.elasticsearch;
+package com.mynawang.elasticsearch.helloworld;
 
+import com.mynawang.elasticsearch.helloworld.Blog;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 

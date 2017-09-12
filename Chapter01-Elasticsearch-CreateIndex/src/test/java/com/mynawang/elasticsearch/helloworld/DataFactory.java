@@ -1,4 +1,4 @@
-package com.mynawang.elasticsearch;
+package com.mynawang.elasticsearch.helloworld;
 
 import java.util.ArrayList;
 import java.util.List;

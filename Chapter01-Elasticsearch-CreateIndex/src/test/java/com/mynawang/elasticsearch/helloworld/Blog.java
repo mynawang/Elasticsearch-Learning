@@ -1,4 +1,4 @@
-package com.mynawang.elasticsearch;
+package com.mynawang.elasticsearch.helloworld;
 
 /**
  * Created by mynawang on 2017/9/12 0012.

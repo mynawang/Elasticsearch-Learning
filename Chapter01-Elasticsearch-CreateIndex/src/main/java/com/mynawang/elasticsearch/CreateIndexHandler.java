@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by mynawang on 2017/9/12 0012.
  */
-public class ElasticsearchHandler {
+public class CreateIndexHandler {
 
     public static void main(String[] args) {
 
@@ -74,6 +74,30 @@ public class ElasticsearchHandler {
 
 
 
+    }
+
+
+    public void createIndex(Student student, String jsonType) {
+        try {
+            TransportClient client = new PreBuiltTransportClient(Settings.EMPTY)
+                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("115.28.72.24"), 9300));
+            IndexResponse response = null;
+            // 索引（数据库名）   类型（表名）
+            if ("json".equals(jsonType)) {
+                response = client.prepareIndex("estest", "student").setSource(student.toJson()).get();
+            } else if ("map".equals(jsonType)) {
+                response = client.prepareIndex("estest", "student").setSource(student.toMap()).get();
+            } else if ("serialize".equals(jsonType)) {
+                response = client.prepareIndex("estest", "student").setSource(student.toSerialize(student)).get();
+            } else if ("builder".equals(jsonType)) {
+                response = client.prepareIndex("estest", "student").setSource(student.toElasticsearchBuilder()).get();
+            }
+            client.close();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

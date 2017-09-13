@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by mynawang on 2017/9/12 0012.
  */
-public class CreateIndexHandler {
+public class CreateIndex {
 
     public static void main(String[] args) {
 

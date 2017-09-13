@@ -1,5 +1,7 @@
 package com.mynawang.elasticsearch;
 
+import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetResponse;
 import org.junit.Test;
 
 import java.net.UnknownHostException;
@@ -34,7 +36,7 @@ public class IndexTest {
         student4.setStudentName("王五");
         student4.setStudentClass("四班");
         student4.setAge(18);
-        CreateIndexHandler createIndexHandler = new CreateIndexHandler();
+        CreateIndex createIndexHandler = new CreateIndex();
         createIndexHandler.createIndex(student1, "json");
         createIndexHandler.createIndex(student2, "map");
         createIndexHandler.createIndex(student3, "serialize");
@@ -45,10 +47,34 @@ public class IndexTest {
     public void testGetIndex() {
         GetIndex getIndex = new GetIndex();
         try {
-            getIndex.getIndex("estest", "student", "AV51YMiyUV2GMK0ZkvEy");
+            GetResponse response = getIndex.getIndex("estest", "student", "AV51YMiyUV2GMK0ZkvEy");
+            System.err.println(response.toString());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testGetMutliIndex() {
+        GetIndex getIndex = new GetIndex();
+        try {
+            getIndex.getMultiIndex();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void testDeleteIndex() {
+        DeleteIndex deleteIndex = new DeleteIndex();
+        try {
+            DeleteResponse response = deleteIndex.deleteIndex("estest", "student", "AV51YMiyUV2GMK0ZkvEy");
+            System.err.println(response.toString());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
